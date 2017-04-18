@@ -2,10 +2,11 @@
 Script to file a complaint regarding public transportation on the department of transportation's webiste
 
 To run:
-Need to have maven 
-On the root level to resolve the dependencies run:
+Need to make sure the chromedriver executuble per operating system is available.
+
+Maven is recommended in order to resolve the dependencies of the project.
+From the root level, run:
 mvn dependency:resolve
+to download the dependencies (selenium is mandatory).
 
-Need to make sure the chromedriver is available and executuble
-
-Run the src/main/Bus.java
+Run the src/main/java/Bus.java
