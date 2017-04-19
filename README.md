@@ -9,4 +9,6 @@ From the root level, run:
 mvn dependency:resolve
 to download the dependencies (selenium is mandatory).
 
+Fill in the details on the src/main/resources/properties.properties file.
+
 Run the src/main/java/Bus.java
