@@ -18,7 +18,7 @@ public class Bus {
 
     private static WebDriver driver;
     private static Properties prop = new Properties();
-    private static final String propFileName = "src/main/resources/properties.properties";
+    private static final String propFileName = "Bus/src/main/resources/properties.properties";
     private static InputStream input = null;
 
     public static void main (String [] args){
@@ -69,7 +69,7 @@ public class Bus {
             }
         }
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "Bus/src/main/resources/chromedriver");
 
         driver = new ChromeDriver();
         driver.get("https://motssl5.mot.gov.il/FORMS/he/compl-pbl/plaint-public-transport-form");
