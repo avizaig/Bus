@@ -1,7 +1,3 @@
-/**
- * Created by aviz on 31/12/2016.
- */
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.text.DateFormat;
@@ -13,13 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * Created by Avi Zaig on 31/12/2016.
+ */
 
 public class Bus {
 
-    private static WebDriver driver;
     private static Properties prop = new Properties();
     private static final String propFileName = "src/main/resources/properties.properties";
-    private static InputStream input = null;
 
     public static void main (String [] args){
 
@@ -38,10 +35,8 @@ public class Bus {
         String details = null;
         String time = null;
 
-        try {
-            input = new FileInputStream(propFileName);
+        try (InputStream input = new FileInputStream(propFileName)){
             // load a properties file
-            //prop.load(input);
             prop.load(new InputStreamReader(input, Charset.forName("UTF-8")));
 
             firstName = prop.getProperty("firstName");
@@ -61,17 +56,11 @@ public class Bus {
 
         } catch (IOException e) {
             System.out.println("Exception: " + e);
-        } finally {
-            try {
-                input.close();
-            } catch (IOException ef) {
-                System.out.println("Exception: " + ef);
-            }
         }
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 
-        driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.get("https://motssl5.mot.gov.il/FORMS/he/compl-pbl/plaint-public-transport-form");
         driver.findElement(By.id("ff_elem1123")).sendKeys(firstName);
 
@@ -125,8 +114,8 @@ public class Bus {
         driver.findElement(By.id("ff_elem1127")).sendKeys(busNumber + " " + details + time);
         driver.findElement(By.xpath("//*[@id=\"bfPage4\"]/div[4]/button[2]"));
         driver.findElement(By.xpath("//*[@id=\"bfPage4\"]/div[4]/button[2]")).click();
-
-        String captcha = driver.findElement(By.id("recaptcha_image")).getText();
+        // Will not work...
+        String captcha = driver.findElement(By.id("ff_capimgValue")).getText();
         System.out.println(captcha);
     }
 }
